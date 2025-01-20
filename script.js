@@ -1,5 +1,5 @@
 //your JS code here. If required.
-const messege = document.querySelector(".messege");
+const messege = document.querySelector(".message");
 const player1 = document.querySelector("#player1");
 const player2 = document.querySelector("#player2");
 const playerInput = document.querySelector(".player-input");
