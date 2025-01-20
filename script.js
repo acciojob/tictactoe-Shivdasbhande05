@@ -1,7 +1,7 @@
 //your JS code here. If required.
 const messege = document.querySelector(".messege");
-const player1 = document.querySelector("#player-1");
-const player2 = document.querySelector("#player-2");
+const player1 = document.querySelector("#player1");
+const player2 = document.querySelector("#player2");
 const playerInput = document.querySelector(".player-input");
 const startbtn = document.querySelector("#start-btn");
 const gameboard = document.querySelector(".game-board");

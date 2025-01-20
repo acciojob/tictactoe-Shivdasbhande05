@@ -33,12 +33,12 @@ h1{
   margin: 15px;
   display: inline-block;
 }
-#start-btn{
+#submit{
   height: 50px;
   border-radius: 10px;
   border: 1px solid #ccc;
 }
-#start-btn:hover{
+#submit:hover{
   background-color: #73788380;
 }
 .game-board{
