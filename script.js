@@ -28,7 +28,7 @@ startbtn.addEventListener("click", () => {
 
     gameActive = true;
 
-    messege.textContent = `${currentPlayer.value} you're up!`
+    messege.textContent = `${currentPlayer.value} you're up`
 });
 
 // who will winner and winning patterns
