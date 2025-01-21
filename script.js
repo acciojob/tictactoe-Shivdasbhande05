@@ -1,72 +1,54 @@
-//your JS code here. If required.
-const messege = document.querySelector(".message");
-const player1 = document.querySelector("#player1");
-const player2 = document.querySelector("#player2");
-const playerInput = document.querySelector(".player-input");
-const startbtn = document.querySelector("#submit");
-const gameboard = document.querySelector(".game-board");
-const gameboardState = Array(9).fill(null);
-const cells = document.querySelectorAll(".cell");
-let currentPlayer = "";
-let currentSymbol = "";
-let gameActive = false; // it will track game is active or not.
+let currentPlayer = 'Player 1';
+let player1Name = '';
+let player2Name = '';
+let gameBoard = ['', '', '', '', '', '', '', '', ''];
+let gameActive = false;
 
-gameboard.style.visibility = "hidden";
+document.getElementById('submit').addEventListener('click', function () {
+    player1Name = document.getElementById('player1').value || 'Player 1';
+    player2Name = document.getElementById('player2').value || 'Player 2';
 
-// game board will appear after click
-startbtn.addEventListener("click", () => {
-    if(player1.value.trim() == "" || player2.value.trim() == ""){
-        alert("Enter Player details");
-        return;
+    if (player1Name && player2Name) {
+        gameActive = true;
+        document.querySelector('.player-setup').style.display = 'none';
+        document.querySelector('.game-board').style.display = 'block';
+        document.querySelector('.message').textContent = `${player1Name}, you're up`;
     }
-
-    playerInput.style.visibility = "hidden";
-    gameboard.style.visibility = "";
-
-    currentPlayer = player1;
-    currentSymbol = "X";
-
-    gameActive = true;
-
-    messege.textContent = `${player1.value} you're up`
 });
 
-// who will winner and winning patterns
-function checkwinner () {
-    const winningPatterns = [
-        [0,1,2],[0,3,6],[0,4,8],[1,4,7],[2,4,6],[2,5,8],[3,4,5],[6,7,8]
-    ];
+document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('click', function () {
+        if (!gameActive || cell.textContent !== '') return;
 
-    for(patterns of winningPatterns){
-        const [a,b,c] = patterns;
+        const index = cell.id - 1;
+        gameBoard[index] = currentPlayer === 'Player 1' ? 'X' : 'O';
+        cell.textContent = currentPlayer === 'Player 1' ? 'X' : 'O';
 
-        if(gameboardState[a] && gameboardState[a] === gameboardState[b] && gameboardState[a] === gameboardState[c]){
-            return true;
-        }
-    }
-    return false
-}
-
-cells.forEach(cell => {
-    cell.addEventListener("click" ,(event) => {
-        console.log(cell.id);
-        const cellIndex = parseInt(cell.id)-1;
-
-        if(gameboardState[cellIndex] || !gameActive){
-            return;
-        }
-
-        gameboardState[cellIndex] = currentSymbol;
-        cell.textContent = currentSymbol;
-
-        if(checkwinner()){
-            messege.textContent =`${currentPlayer.value}, Congratulations you won!!!`
+        if (checkWinner()) {
+            document.querySelector('.message').textContent = `${currentPlayer} congratulations you won!`;
             gameActive = false;
             return;
         }
 
-        currentPlayer = currentPlayer === player1 ? player2 : player1;
-        currentSymbol = currentSymbol ==="X" ?"O" :"X";
-        messege.textContent = `${currentPlayer.value} you're up!`;
+        currentPlayer = currentPlayer === 'Player 1' ? 'Player 2' : 'Player 1';
+        document.querySelector('.message').textContent = `${currentPlayer}, you're up`;
     });
-})
+});
+
+function checkWinner() {
+    const winPatterns = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    return winPatterns.some(pattern => {
+        const [a, b, c] = pattern;
+        return gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c];
+    });
+}
