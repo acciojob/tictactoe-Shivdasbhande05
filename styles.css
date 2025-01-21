@@ -1,32 +1,30 @@
-/*  your css code here. If applicable */
+/* styles.css */
 body {
-	font-family: Arial, sans-serif;
-	text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
+
 .container {
-	width: 300px;
-	margin: 50px auto;
+    text-align: center;
 }
-h1 {
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 2rem;
+
+.form-section input {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
 }
-.form {
-	margin-bottom: 20px;
+
+#submit {
+    padding: 10px 20px;
+    font-size: 16px;
 }
-input {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-}
-button {
-	padding: 10px 20px;
-	background-color: #000;
-	color: #fff;
-	border: none;
-	cursor: pointer;
-}
-.hidden {
+
+.game-section {
     display: none;
 }
 
@@ -35,24 +33,22 @@ button {
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
     gap: 5px;
-    justify-content: center;
+    margin: 20px auto;
 }
 
 .cell {
-    background-color: #f4b6c2;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
     border: 1px solid #000;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    justify-content: center;
+    font-size: 24px;
     cursor: pointer;
 }
 
 .message {
-    margin: 20px 0;
-    font-size: 1.5rem;
-}
-
-.cell.taken {
-    pointer-events: none;
+    margin: 20px;
+    font-size: 18px;
 }
